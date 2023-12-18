@@ -1,0 +1,22 @@
+{{!-- renderiza de los productos pasados por el view.router.js , usa el metodo de obtener producto del manager que
+creamos
+desventaja esto no es en tiempo real , --}}
+
+<div class:"divP">
+    <p>Hola sus productos son:</p>
+
+    {{#each respuesta}}
+
+    <p>Nombre : {{this.title}}</p>
+    <p>Precio : {{this.price}}</p>
+    <p>Descripcion : {{this.description}}</p>
+    <p>Miniatura : {{this.thumbnail}}</p>
+    <p>Stock : {{this.stock}}</p>
+    <p>Codigo : {{this.code}}</p>
+    <p>Categoria : {{this.category}}</p>
+    <p>Estatus : {{this.status}}</p>
+    <p>Id : {{this.id}}</p>
+
+    {{/each}}
+
+</div>

@@ -1,0 +1,62 @@
+<h1>Real Time Products</h1>
+
+{{!-- formulario para extraer el valor de cada campo asi podemos agregar un nuevo producto, el producto viaja al
+index.js por la clase, ahi se agrupa
+en una variable y esa variable la emite al app.js para que el socket la escuche, al llevar los valores de cada parte del
+producto ahi en el socket usamos los manager creados para
+actualizar borrar y agregar , en este caso el de agregar usamos y se crea automaticamente. --}}
+
+<div>
+
+    <form>
+        <label>Titulo</label>
+        <input id="idTitulo" type="text">
+
+        <label>Precio</label>
+        <input id="idPrecio" type="text">
+
+        <label>Categoria</label>
+        <input id="idCategoria" type="text">
+
+        <label>Descripcion</label>
+        <input id="idDescripcion" type="text">
+
+        <label>Stock</label>
+        <input id="idStock" type="text">
+
+        <label>Codigo</label>
+        <input id="idCodigo" type="text">
+
+        <label>Imagen</label>
+        <input id="idImagen" type="text">
+
+
+        <button id="idBoton" type="submit">Enviar</button>
+
+    </form>
+
+    {{!-- en eliminar extraemos el valor del campo de texto por id , lo pasamos al index , y de ahi viaja al app.js para
+    usar los metodos del manager --}}
+
+
+    <form action="">
+        <label>Eliminar Producto</label>
+        <input id="idEliminar" type="text">
+
+        <button id="botonEliminar">Confirmar</button>
+    </form>
+
+</div>
+
+{{!-- este div corresponde a los productos en tiempo real , el trabajo de mostrarlos en tiempo real lo hace
+automaticamente el socket , desde aca pasamos una id, la
+cual la toma el index.js , a su vez llamamos el metodo del manager desde el app , para que nos emita actualizado los
+datos en tiempo real , y lo recorremos en el
+index con un each , eso hace que se dibuje constantemente lo que envia el socket --}}
+
+<div id="idProductos">
+
+</div>
+
+<script src="/socket.io/socket.io.js">  </script>
+<script src="/js/index.js">  </script>

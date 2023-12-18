@@ -1,0 +1,158 @@
+{{!-- la coleccion products la dibujamos en pantalla --}}
+<div>Hola {{user.first_name}}</div>
+
+<br>
+<div>
+
+    {{#each result.payload}}
+
+    <div>
+
+        name: {{this.title}} <br>
+        price: {{this.price}} <br>
+        stock: {{this.stock}} <br>
+        thumbnail: {{this.thumbnail}}
+    </div>
+
+    <button id="btnAddC">Agregar a carrito</button>
+
+    <hr>
+
+    {{/each}}
+
+</div>
+{{!-- traemos con palabras reservadas de handlebars los datos total documentos , la pagina que estamos y el total de
+paginas --}}
+
+
+Total Products: {{totalDocs}} <br>
+
+pages: {{page}} / {{totalPages}} <br>
+
+{{!-- creamos un input el cual traemos el valor de limit por predefinido desde el app.js {{limit}} --}}
+
+Limit: <input id="limit" type="text" value="{{limit}}"> <br> <br>
+
+Page: <input id="page" type="text" value="{{page}}">
+
+<button id="btnPage">Ir a pagina</button>
+
+<br> <br>
+
+Order: <select name="" id="ordenar">
+
+    <option value="">----</option>
+
+    <option value="0">Sin filtro</option>
+
+    <option value="asc">Precio menor a mayor</option>
+
+    <option value="des">Precio mayor a menor</option>
+
+</select>
+
+<br> <br>
+
+Categoria: <select name="" id="category">
+
+    <option value="">----</option>
+
+    <option value="1">Audio</option>
+
+    <option value="2">Video</option>
+
+    <option value="3">Tecnologia</option>
+
+    <option value="">Todos</option>
+
+</select>
+
+<br> <br>
+
+Search: <input id="query" type="text" value="{{query}}">
+
+<br> <br> <br>
+
+Con stock: <input type="checkbox" id="check">
+
+<br> <br>
+
+{{!-- guardamos en un input que va a estar escondido los valores de pagina siguiente y pagina atras para usarlos en los
+eventos onclick direccionar --}}
+
+<input id="nextPage" type="hidden" value="{{nextPage}}">
+
+<input id="prevPage" type="hidden" value="{{prevPage}}">
+
+{{!-- en una etiqueta A , dibujamos en pantalla pagina atras, pagina adelante y le decimos que unless , sino hay pagina
+previa o pagina siguiente el display del menu
+va a ser none, pero si hay se leera previus o next --}}
+
+<a id="btnPrev" href="#" {{#unless hasPrevPage }} style="display: none;" {{/unless}}>previus</a>
+
+<a id="btnNext" href="#" {{#unless hasNextPage }} style="display: none;" {{/unless}}>next</a>
+
+<script>
+
+    document.getElementById("btnPrev").onclick = () => {
+        const prevPage = document.getElementById("prevPage").value
+
+        const pagina = document.getElementById("page").value
+
+        const limit = document.getElementById("limit").value
+
+        const query = document.getElementById("query").value
+
+        const category = document.getElementById("category").value
+
+        let category1 = Number(category)
+
+        const sort = document.getElementById("ordenar").value
+
+
+        const url = `products/?page=${prevPage}&limit=${limit}&query=${query}&category=${category1}&sort=${sort}`
+        document.location.href = url
+
+    }
+
+    document.getElementById("btnNext").onclick = () => {
+        const prevPage = document.getElementById("nextPage").value
+
+        const pagina = document.getElementById("page").value
+
+        const limit = document.getElementById("limit").value
+
+        const query = document.getElementById("query").value
+
+        const category = document.getElementById("category").value
+
+        let category1 = Number(category)
+
+        const sort = document.getElementById("ordenar").value
+
+        const url = `products/?page=${prevPage}&limit=${limit}&query=${query}&category=${category1}&sort=${sort}`
+
+        document.location.href = url
+
+    }
+
+    document.getElementById("btnPage").onclick = () => {
+
+        const pagina = document.getElementById("page").value
+
+        const limit = document.getElementById("limit").value
+
+        const query = document.getElementById("query").value
+
+        const category = document.getElementById("category").value
+
+        let category1 = Number(category)
+
+        const sort = document.getElementById("ordenar").value
+
+        const url = `products/?page=${pagina}&limit=${limit}&query=${query}&category=${category1}&sort=${sort}`
+
+        document.location.href = url
+    }
+
+</script>

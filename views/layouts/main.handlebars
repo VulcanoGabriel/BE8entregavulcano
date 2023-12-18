@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.io</title>
+</head>
+
+<body>
+
+
+
+    <a href="/">Index</a><br>
+    <a href="/login">Login</a> <br>
+    <a href="/register">Register</a> <br>
+    <a href="/profile">Profile</a> <br>
+
+    {{#if auth}}
+
+    <a href="/logout">Logout</a><br>
+
+    {{/if}}
+
+    <br>
+
+    <hr>
+
+
+
+
+    {{!-- el body creado hace que desde este molde se genere toda la pagina web --}}
+
+    {{{body}}}
+
+</body>
+
+</html>
