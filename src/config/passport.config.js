@@ -100,7 +100,7 @@ const initializePassport = () => {
 
             //buscamos un user igual a del profile de github por coincidencia en el email
 
-            const user = await userModel.findOne({ email: profile._json.email })
+            const user = await UserModel.findOne({ email: profile._json.email })
 
 
             //si tenemos el user devolvemos el mismo porque ya existe
@@ -112,7 +112,7 @@ const initializePassport = () => {
 
             //sino lo tenemos hacemos un nuevo usuario con el metodo create y el molde de usermodel, le vamos a pasar de lo traido de github el first name y el email lo sacamos por medio del metodo de github profile
 
-            const newUser = await userModel.create({
+            const newUser = await UserModel.create({
                 first_name: profile._json.name,
                 last_name: ``,
                 email: profile._json.email,
@@ -139,7 +139,7 @@ const initializePassport = () => {
 
     passport.deserializeUser(async (id, done) => {
 
-        const user = await userModel.findById(id)
+        const user = await UserModel.findById(id)
         done(null, user)
 
 

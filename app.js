@@ -43,6 +43,12 @@ const mongoDB = "ecommerce"
 
 const app = express()
 
+
+//passport
+
+initializePassport()
+
+
 //iniciamos handlebars
 
 app.engine(`handlebars`, handlebars.engine())
@@ -85,10 +91,6 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }))
-
-//passport
-
-initializePassport()
 
 
 // rutas
